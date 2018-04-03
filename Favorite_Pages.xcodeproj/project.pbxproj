@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82277469206B586600348A92 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82277468206B586600348A92 /* MyCell.swift */; };
 		823804EF2060D0C60085F6CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823804EE2060D0C60085F6CF /* AppDelegate.swift */; };
 		823804F12060D0C60085F6CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823804F02060D0C60085F6CF /* ViewController.swift */; };
-		823804F42060D0C60085F6CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 823804F22060D0C60085F6CF /* Main.storyboard */; };
 		823804F62060D0C60085F6CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 823804F52060D0C60085F6CF /* Assets.xcassets */; };
 		823804F92060D0C60085F6CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 823804F72060D0C60085F6CF /* LaunchScreen.storyboard */; };
+		823805012060D9140085F6CF /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823805002060D9140085F6CF /* WebViewController.swift */; };
+		82F92160206B5B19007B2571 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F9215F206B5B19007B2571 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		82277468206B586600348A92 /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		823804EB2060D0C60085F6CF /* Favorite_Pages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Favorite_Pages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		823804EE2060D0C60085F6CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		823804F02060D0C60085F6CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		823804F32060D0C60085F6CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		823804F52060D0C60085F6CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		823804F82060D0C60085F6CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		823804FA2060D0C60085F6CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		823805002060D9140085F6CF /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		82F9215F206B5B19007B2571 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +59,31 @@
 			isa = PBXGroup;
 			children = (
 				823804EE2060D0C60085F6CF /* AppDelegate.swift */,
-				823804F02060D0C60085F6CF /* ViewController.swift */,
-				823804F22060D0C60085F6CF /* Main.storyboard */,
+				82F9215D206B5AA8007B2571 /* Model */,
+				82F9215E206B5AB7007B2571 /* View */,
 				823804F52060D0C60085F6CF /* Assets.xcassets */,
 				823804F72060D0C60085F6CF /* LaunchScreen.storyboard */,
 				823804FA2060D0C60085F6CF /* Info.plist */,
 			);
 			path = Favorite_Pages;
+			sourceTree = "<group>";
+		};
+		82F9215D206B5AA8007B2571 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82277468206B586600348A92 /* MyCell.swift */,
+				82F9215F206B5B19007B2571 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82F9215E206B5AB7007B2571 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				823804F02060D0C60085F6CF /* ViewController.swift */,
+				823805002060D9140085F6CF /* WebViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,7 +113,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Pankaj Sharma";
 				TargetAttributes = {
 					823804EA2060D0C60085F6CF = {
@@ -125,7 +147,6 @@
 			files = (
 				823804F92060D0C60085F6CF /* LaunchScreen.storyboard in Resources */,
 				823804F62060D0C60085F6CF /* Assets.xcassets in Resources */,
-				823804F42060D0C60085F6CF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +157,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82F92160206B5B19007B2571 /* Model.swift in Sources */,
 				823804F12060D0C60085F6CF /* ViewController.swift in Sources */,
+				82277469206B586600348A92 /* MyCell.swift in Sources */,
+				823805012060D9140085F6CF /* WebViewController.swift in Sources */,
 				823804EF2060D0C60085F6CF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,14 +168,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		823804F22060D0C60085F6CF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				823804F32060D0C60085F6CF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		823804F72060D0C60085F6CF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -177,6 +193,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -184,6 +201,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -211,7 +229,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -234,6 +252,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -241,6 +260,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -262,7 +282,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -277,6 +297,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4QA6MH6558;
 				INFOPLIST_FILE = Favorite_Pages/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Pankaj-Sharma.Favorite-Pages";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,6 +313,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4QA6MH6558;
 				INFOPLIST_FILE = Favorite_Pages/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Pankaj-Sharma.Favorite-Pages";
 				PRODUCT_NAME = "$(TARGET_NAME)";
