@@ -12,16 +12,26 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     let cellID = "cellID"
     var dataArray = [DataModel]()
+    let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-//        let layout = UICollectionViewFlowLayout()
-//        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        super.viewDidLoad()
+  
+        if let savedArray = defaults.value(forKey: "myPersonalKey") as? Data,
+            let decodedArray = try? PropertyListDecoder().decode(Array<DataModel>.self, from: savedArray) {
+            
+            
+            
+            dataArray = decodedArray
+        }
+        
+
         collectionView?.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1)
         navigationItem.title = "Favorite Pages"
         navigationController?.navigationBar.backgroundColor = UIColor(red: 180/255, green: 60/255, blue: 100/255, alpha: 1)
         
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 25)]
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 25)]
       //  navigationController?.hidesBarsOnTap = true
         collectionView?.register(MyCell.self, forCellWithReuseIdentifier: cellID)
         navigationBarSetUp()
@@ -51,21 +61,28 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
     }
     
+    
     func saveWebLink(title: String, url: String) {
-        let model = DataModel(title: title, url: url)
+        let data = DataModel(title: title, url: url)
+       dataArray.append(data)
+        print(dataArray)
         
-        dataArray.append(model)
+        let decodedArray = try? PropertyListEncoder().encode(data)
+        defaults.set(decodedArray, forKey: "myPersonalKey")
         
-       
-        DispatchQueue.main.async {
+            DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }
+        
     }
    
-    
+    func saveData() {
+        defaults.set(dataArray, forKey: "myPersonalKey")
+    }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       // saveData()
         return dataArray.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

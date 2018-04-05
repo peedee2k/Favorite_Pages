@@ -75,29 +75,20 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
            let url = URL(string: myURLString)
             webView.loadRequest(URLRequest(url: url!))
-            
-        
-    }
+        }
     
     func showAlertAction() {
         let alert = UIAlertController(title: "Add Bookmark", message: "Customize your weblink", preferredStyle: .alert)
         
         alert.addTextField { (textField: UITextField) in
             textField.placeholder = "Type your page name"
-            
+         }
         
-        }
        alert.addAction(UIAlertAction(title: "Save", style: .default) { (showAlert) in
+        
             if let textfield = alert.textFields?.first {
-               
-                   // textfield.text = self.addressTextField.text
-                   // guard let webUrl = self.webView.request?.url?.absoluteString else { return }
-                  
-                    self.myDelegate?.saveWebLink(title: textfield.text!, url: self.myURLString)
-                   
-                    
-                
-            }
+                self.myDelegate?.saveWebLink(title: textfield.text!, url: self.myURLString)
+             }
         })
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

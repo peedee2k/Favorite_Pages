@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct DataModel {
+struct DataModel: Codable {
     var title: String
     var url: String
     
