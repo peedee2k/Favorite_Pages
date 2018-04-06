@@ -21,17 +21,11 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveLinkTapped))
-       // navigationController?.hidesBarsOnTap = false
+      
       
         showWebView()
     }
-//    override var prefersStatusBarHidden: Bool {
-//        return navigationController?.isNavigationBarHidden == false
-//    }
-//
-//    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-//        return UIStatusBarAnimation.slide
-//    }
+
     
     @objc func saveLinkTapped() {
         showAlertAction()
