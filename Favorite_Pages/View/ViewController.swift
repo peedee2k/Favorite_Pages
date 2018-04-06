@@ -27,10 +27,10 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
         collectionView?.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1)
         navigationItem.title = "Favorite Pages"
-        navigationController?.navigationBar.tintColor = UIColor.black
+        
         navigationController?.navigationBar.backgroundColor = UIColor(red: 180/255, green: 60/255, blue: 100/255, alpha: 1)
         
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 25)]
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 25)]
       
         collectionView?.register(MyCell.self, forCellWithReuseIdentifier: cellID)
         navigationBarSetUp()
