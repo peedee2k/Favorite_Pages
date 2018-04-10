@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, BookMarkProtocol {
     
+    
+    
     let cellID = "cellID"
     var dataArray = [DataModel]()
     let defaults = UserDefaults.standard
@@ -19,12 +21,12 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
   
         if let savedArray = defaults.value(forKey: "myPersonalKey") as? Data,
-            let decodedArray = try? PropertyListDecoder().decode(Array<DataModel>.self, from: savedArray) {
-            
+            let decodedArray = try? PropertyListDecoder().decode([DataModel].self, from: savedArray) {
+           
             dataArray = decodedArray
         }
         
-
+        
         collectionView?.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1)
         navigationItem.title = "Favorite Pages"
         
@@ -33,13 +35,47 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 25)]
       
         collectionView?.register(MyCell.self, forCellWithReuseIdentifier: cellID)
+        
         navigationBarSetUp()
     }
+    
+    
+   @objc func editTapped() {
+     navigationItem.rightBarButtonItem?.isEnabled = true
+    if navigationItem.leftBarButtonItem?.title == "Edit" {
+        navigationItem.leftBarButtonItem?.title = "Done"
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        if let indexPath = collectionView?.indexPathsForVisibleItems {
+            for indexpath in indexPath {
+                if let cell = collectionView?.cellForItem(at: indexpath) as? MyCell {
+                    cell.isEditing = !cell.isEditing
+                }
+            }
+        }
+
+    } else {
+        navigationItem.leftBarButtonItem?.title = "Edit"
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        if let indexPath = collectionView?.indexPathsForVisibleItems {
+            for indexpath in indexPath {
+                if let cell = collectionView?.cellForItem(at: indexpath) as? MyCell {
+                    cell.isEditing = !cell.isEditing
+                }
+            }
+        }
+    }
+      }
 
     
+    
+   
+    
     func navigationBarSetUp() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButton))
-        
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButton))
+         navigationItem.leftBarButtonItem =
+            UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editTapped))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped))
     }
 
     let webViewVC = WebViewController()
@@ -60,8 +96,8 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
        dataArray.append(data)
         print(dataArray)
         
-        let decodedArray = try? PropertyListEncoder().encode(dataArray)
-        defaults.set(decodedArray, forKey: "myPersonalKey")
+        let encodedArray = try? PropertyListEncoder().encode(dataArray)
+        defaults.set(encodedArray, forKey: "myPersonalKey")
         defaults.synchronize()
             DispatchQueue.main.async {
             self.collectionView?.reloadData()
@@ -76,12 +112,10 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! MyCell
+            cell.imageIcon.image = UIImage(named: "moon")
+            cell.titleLabel.text = dataArray[indexPath.row].title
         
-       // let mymodel = dataArray[indexPath.row]
-        cell.imageIcon.image = UIImage(named: "moon")
-        
-       
-        cell.titleLabel.text = dataArray[indexPath.row].title
+            cell.delegate = self
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -96,19 +130,49 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let tappedCell = dataArray[indexPath.row]
-       // print(tappedCell.url)
-        let navController = UINavigationController(rootViewController: webViewVC)
-        webViewVC.myDelegate = self
-        present(navController, animated: true, completion: nil)
+        
+      
+        let cell = MyCell()
+        
+        if cell.editImageBtn.isHidden {
+            
+            let tappedCell = dataArray[indexPath.row]
+            // print(tappedCell.url)
+            let navController = UINavigationController(rootViewController: webViewVC)
+            webViewVC.myDelegate = self
+            present(navController, animated: true, completion: nil)
+            
+            self.webViewVC.myURLString = tappedCell.url
+            self.webViewVC.loadWebPage()
+            print(self.webViewVC.myURLString)
+            
+        } else {
+           // delete(cell: cell)
+            deleteCell(cell: cell)
+        }
+    }
     
-        self.webViewVC.myURLString = tappedCell.url
-        self.webViewVC.loadWebPage()
-        print(self.webViewVC.myURLString)
-       
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        
+    }
+    
+    func delete(cell: MyCell) {
+        
     }
 
-
 }
+extension ViewController: CellDelegate {
+    func deleteCell(cell: MyCell) {
+        
+        if let indexPath = collectionView?.indexPath(for: cell) {
+            dataArray.remove(at: indexPath.item)
+            collectionView?.deleteItems(at: [indexPath])
+            collectionView?.reloadData()
+        }
+    }
+}
+
 
 
