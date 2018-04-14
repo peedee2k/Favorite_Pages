@@ -179,27 +179,14 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
                     
                      cell.isEditing == true ? print("Edit mode \(cell.titleLabel)") : print("Edit mode off")
                 }
-                
             }
         }
-        
     }
     
-//    func deleteCell(cell: MyCell) {
-//        if let indexPath = collectionView?.indexPath(for: cell) {
-//            print(123)
-//
-//            dataArray.remove(at: indexPath.item)
-//            collectionView?.deleteItems(at: [indexPath])
-//            DispatchQueue.main.async {
-//                self.collectionView?.reloadData()
-//            }
-//
-//        }
-//    }
+            }
     
 
-}
+
 
 extension String {
     func contains(find: String) -> Bool {

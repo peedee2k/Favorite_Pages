@@ -40,7 +40,7 @@ class MyCell : UICollectionViewCell {
         return label
     }()
     
-    var editImageBtn: UIButton = {
+   lazy var editImageBtn: UIButton = {
     var cellButton = UIButton()
         cellButton.backgroundColor = UIColor.black
         cellButton.setImage(#imageLiteral(resourceName: "Close-Red"), for: .normal)
