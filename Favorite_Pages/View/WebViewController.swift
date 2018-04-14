@@ -9,7 +9,7 @@
 import UIKit
 
 protocol BookMarkProtocol {
-    func saveWebLink(title: String, url: String)
+    func saveWebLink(title: String, url: String, image: String)
 }
 
 class WebViewController: UIViewController, UIWebViewDelegate {
@@ -61,8 +61,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         view.addSubview(webView)
         
         webView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        let url = URL(string: "https://www.google.com")
-        webView.loadRequest(URLRequest(url: url!))
+        
         
     }
     func loadWebPage() {
@@ -81,11 +80,23 @@ class WebViewController: UIViewController, UIWebViewDelegate {
        alert.addAction(UIAlertAction(title: "Save", style: .default) { (showAlert) in
         
             if let textfield = alert.textFields?.first {
-                self.myDelegate?.saveWebLink(title: textfield.text!, url: self.myURLString)
+                var image = "moon"
+                let wordArray = ["google", "yahoo", "att", "rc255", "cnn"]
+                for word in wordArray {
+                if self.myURLString.contains(find: word) == true {
+                    if word == "google" { image = "google" }
+                    if word == "rc255" { image = "rcLogo" }
+                    if word == "yahoo" { image = "yahoo" }
+                    if word == "cnn" { image = "cnn" }
+                }
              }
+               self.myDelegate?.saveWebLink(title: textfield.text!, url: self.myURLString, image: image)
+            }
         })
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
 }
-}
+
+

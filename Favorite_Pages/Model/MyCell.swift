@@ -42,13 +42,18 @@ class MyCell : UICollectionViewCell {
     
     var editImageBtn: UIButton = {
     var cellButton = UIButton()
+        cellButton.backgroundColor = UIColor.black
         cellButton.setImage(#imageLiteral(resourceName: "Close-Red"), for: .normal)
         cellButton.contentMode = .scaleAspectFit
         cellButton.translatesAutoresizingMaskIntoConstraints = false
         cellButton.addTarget(self, action: #selector(cellButtonTapped), for: .touchUpInside)
+       // cellButton.addTarget(self, action: #selector(cellButtonTapped), for: .touchUpInside)
+        
         return cellButton
     }()
-    @objc func cellButtonTapped() {
+    
+    @objc func cellButtonTapped(sender: UIButton!) {
+        print("button tapped")
         delegate?.deleteCell(cell: self)
     }
     
@@ -69,15 +74,17 @@ class MyCell : UICollectionViewCell {
        
         self.addSubview(imageIcon)
         self.addSubview(titleLabel)
-        self.imageIcon.addSubview(editImageBtn)
+        self.addSubview(editImageBtn)
         
         
         // constrains for edit image
         
-        editImageBtn.topAnchor.constraint(equalTo: imageIcon.topAnchor).isActive = true
-        editImageBtn.bottomAnchor.constraint(equalTo: imageIcon.bottomAnchor).isActive = true
-        editImageBtn.leftAnchor.constraint(equalTo: imageIcon.leftAnchor).isActive = true
-        editImageBtn.rightAnchor.constraint(equalTo: imageIcon.rightAnchor).isActive = true
+        editImageBtn.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+       // editImageBtn.bottomAnchor.constraint(equalTo: imageIcon.bottomAnchor).isActive = true
+        editImageBtn.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+       // editImageBtn.rightAnchor.constraint(equalTo: imageIcon.rightAnchor).isActive = true
+        editImageBtn.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        editImageBtn.widthAnchor.constraint(equalToConstant: 20).isActive = true
         editImageBtn.isHidden = !isEditing
         
         

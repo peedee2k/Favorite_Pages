@@ -11,5 +11,7 @@ import UIKit
 struct DataModel: Codable {
     var title: String
     var url: String
+    var iconImage: String
+    
     
 }
