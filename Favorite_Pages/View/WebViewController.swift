@@ -81,13 +81,14 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
             if let textfield = alert.textFields?.first {
                 var image = "moon" // This is Default Image
-                let wordArray = ["google", "yahoo", "att", "rc255", "cnn"]
+                let wordArray = ["google", "yahoo", "att", "rc255", "cnn", "ndtv"]
                 for word in wordArray {
                 if self.myURLString.contains(find: word) == true {
                     if word == "google" { image = "google" }
                     if word == "rc255" { image = "rcLogo" }
                     if word == "yahoo" { image = "yahoo" }
                     if word == "cnn" { image = "cnn" }
+                    if word == "ndtv" { image = "NDTV" }
                 }
              }
                self.myDelegate?.saveWebLink(title: textfield.text!, url: self.myURLString, image: image)

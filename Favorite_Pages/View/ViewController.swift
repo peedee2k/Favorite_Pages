@@ -9,26 +9,7 @@
 import UIKit
 
 class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, BookMarkProtocol, CellDelegate {
-    func deleteCell(cell: MyCell) {
-        
-        if let indexPath = collectionView?.indexPath(for: cell) {
-                        print(123)
-            
-                        dataArray.remove(at: indexPath.item)
-                        collectionView?.deleteItems(at: [indexPath])
-                        DispatchQueue.main.async {
-                            self.collectionView?.reloadData()
-                        }
-            
-                    }
-        
-    }
-    
-    
-    
-    
-    
-    
+ 
     let cellID = "cellID"
     var dataArray = [DataModel]()
     let defaults = UserDefaults.standard
@@ -112,14 +93,17 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         let data = DataModel(title: title, url: url, iconImage: image)
        dataArray.append(data)
-     
+        encode()
+        
+        
+    }
+    func encode() {
         let encodedArray = try? PropertyListEncoder().encode(dataArray)
         defaults.set(encodedArray, forKey: "myPersonalKey")
         defaults.synchronize()
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
             self.collectionView?.reloadData()
         }
-        
     }
   
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -182,6 +166,28 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
         }
     }
+    
+    func deleteCell(cell: MyCell) {
+        
+        let alertcontroller = UIAlertController(title: "Delete Cell", message: "Are you sure you want to delete cell?", preferredStyle: .alert)
+        alertcontroller.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (showAlert) in
+            if let indexPath = self.collectionView?.indexPath(for: cell) {
+                print(123)
+                
+                self.dataArray.remove(at: indexPath.item)
+                self.collectionView?.deleteItems(at: [indexPath])
+                self.encode()
+               // self.collectionView?.reloadData()
+            }
+
+        }))
+        alertcontroller.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        present(alertcontroller, animated: true, completion: nil)
+        
+        }
+    
+    
+
     
             }
     
