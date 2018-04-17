@@ -80,7 +80,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
        alert.addAction(UIAlertAction(title: "Save", style: .default) { (showAlert) in
         
             if let textfield = alert.textFields?.first {
-                var image = "moon" // This is Default Image
+                var image = "Bookmarks" // This is Default Image
                 let wordArray = ["google", "yahoo", "att", "rc255", "cnn", "ndtv"]
                 for word in wordArray {
                 if self.myURLString.contains(find: word) == true {
@@ -98,6 +98,7 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+
 }
 
 
