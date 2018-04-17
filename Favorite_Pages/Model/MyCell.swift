@@ -28,9 +28,9 @@ class MyCell : UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenir Next", size: 17)
+        label.font = UIFont(name: "Avenir Next", size: 12)
         label.textColor = UIColor.black
-      //  label.font = label.font.withSize(17)
+      
         label.textAlignment = NSTextAlignment.center
         label.numberOfLines = 0
         label.sizeToFit()
