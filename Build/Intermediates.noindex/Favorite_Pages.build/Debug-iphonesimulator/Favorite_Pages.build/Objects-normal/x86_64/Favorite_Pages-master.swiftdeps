@@ -1,0 +1,9 @@
+version: "Apple Swift version 4.1 (swiftlang-902.0.43 clang-902.0.37.1)"
+options: "0e005c38fb9ff900665825a42906c3bd"
+build_time: [1524112430, 124586000]
+inputs:
+  "/Users/pankajsharma/Desktop/Favorite_Pages/Favorite_Pages/Model/Model.swift": [1523629393, 0]
+  "/Users/pankajsharma/Desktop/Favorite_Pages/Favorite_Pages/View/ViewController.swift": [1524028702, 0]
+  "/Users/pankajsharma/Desktop/Favorite_Pages/Favorite_Pages/Model/MyCell.swift": [1524061631, 0]
+  "/Users/pankajsharma/Desktop/Favorite_Pages/Favorite_Pages/View/WebViewController.swift": [1524061277, 0]
+  "/Users/pankajsharma/Desktop/Favorite_Pages/Favorite_Pages/AppDelegate.swift": [1523896990, 0]
